@@ -1,0 +1,32 @@
+.dashboard {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+  
+  .dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .dashboard-row {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .dashboard-row {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard {
+      padding: 1rem;
+    }
+  
+    .dashboard-grid {
+      gap: 1.5rem;
+    }
+  }
