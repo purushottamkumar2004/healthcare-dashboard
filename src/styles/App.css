@@ -7,17 +7,23 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html, body, #root {
+  height: 100%;
+  overflow: hidden; /* prevent body scroll */
+}
+
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   background-color: var(--background-color);
+  overflow: hidden; /* fix double scrollbar */
 }
 
 .app-main {
   display: flex;
   flex: 1;
-  overflow: hidden;
+  overflow: hidden; /* prevent nested scrolls */
 }
 
 /* Responsive styles */

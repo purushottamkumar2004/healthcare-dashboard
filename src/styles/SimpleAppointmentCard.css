@@ -1,23 +1,26 @@
 .simple-appointment-card {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem;
-    background-color: var(--secondary-color);
-    border-radius: var(--border-radius);
-  }
-  
-  .card-icon {
-    color: var(--primary-color);
-    font-size: 1.1rem;
-  }
-  
-  .card-content h3 {
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
-  }
-  
-  .card-content p {
-    font-size: 0.8rem;
-    color: var(--text-light);
-  }
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* more spacing between icon and text */
+  padding: 0.75rem 1rem; /* more internal spacing */
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius);
+}
+
+.card-icon {
+  color: var(--primary-color);
+  font-size: 1.2rem; /* larger icon */
+}
+
+.card-content h3 {
+  font-size: 0.95rem; /* larger heading */
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+
+.card-content p {
+  font-size: 0.8rem; /* larger paragraph */
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.3;
+}

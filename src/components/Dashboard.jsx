@@ -10,16 +10,19 @@ function Dashboard() {
   return (
     <main className="dashboard">
       <div className="dashboard-grid">
-        <div className="dashboard-row">
-          <AnatomySection />
-          <HealthStatusCards />
+        <div className="main-overview-container">
+          <div className="health-overview-section">
+            <AnatomySection />
+            <HealthStatusCards />
+          </div>
+          <div className="calendar-section">
+            <CalendarView />
+          </div>
         </div>
         <div className="dashboard-row">
-          <CalendarView />
-        </div>
-        <div className="dashboard-row">
+        <ActivityFeed />
           <UpcomingSchedule />
-          <ActivityFeed />
+          
         </div>
       </div>
     </main>

@@ -1,44 +1,92 @@
 import React from 'react';
-import { calendarData } from '../data/calendar';
 import '../styles/Calendar.css';
+import { upcomingAppointments } from '../data/calendar'; // <-- External appointment data
 
-function CalendarView() {
+// Only showing slots from 10 AM to 2 PM
+const timeSlots = ['10:00', '11:00', '12:00', '13:00', '14:00'];
+
+// Base calendar days and dates
+const baseCalendarData = [
+  { day: 'Mon', date: '25', appointments: [] },
+  { day: 'Tues', date: '26', appointments: [] },
+  { day: 'Wed', date: '27', appointments: [] },
+  { day: 'Thurs', date: '28', appointments: [] },
+  { day: 'Fri', date: '29', appointments: [] },
+  { day: 'Sat', date: '30', appointments: [] },
+
+];
+
+// Convert "02:30 PM - 03:15 PM" → "14:00"
+const convertTo24Hour = (timeRange) => {
+  const [start] = timeRange.split(' - ');
+  const [time, period] = start.split(' ');
+  let [hour] = time.split(':').map(Number);
+
+  if (period === 'PM' && hour !== 12) hour += 12;
+  if (period === 'AM' && hour === 12) hour = 0;
+
+  return `${hour.toString().padStart(2, '0')}:00`;
+};
+
+// Sync appointments with calendar data
+const calendarData = baseCalendarData.map((dayEntry) => {
+  const fullDayMap = {
+    Mon: 'Monday',
+    Tues: 'Tuesday',
+    Wed: 'Wednesday',
+    Thurs: 'Thursday',
+    Fri: 'Friday',
+    Sat: 'Saturday',
+  };
+
+  const fullDay = fullDayMap[dayEntry.day];
+  const matchingAppointments = upcomingAppointments.filter((appt) => appt.day === fullDay);
+
+  const addedSlots = matchingAppointments
+    .map((appt) => convertTo24Hour(appt.time))
+    .filter((slot) => timeSlots.includes(slot)); // Only keep allowed slots
+
+  return {
+    ...dayEntry,
+    appointments: [...new Set([...dayEntry.appointments, ...addedSlots])],
+    selected: addedSlots.length > 0 ? addedSlots[0] : null,
+  };
+});
+
+const CalendarView = () => {
   return (
-    <div className="calendar-section">
-      <h2 className="section-title">October 2021</h2>
+    <div className="calendar-container">
+      <div className="calendar-header">
+        <span>October 2021</span>
+        <div className="calendar-nav">
+          <button>{'<'}</button>
+          <button>{'>'}</button>
+        </div>
+      </div>
+
       <div className="calendar-grid">
-        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-          <div key={day} className="calendar-day-header">{day}</div>
-        ))}
-        
-        {calendarData.days.map((day, index) => (
-          <div key={index} className={`calendar-day ${day.hasAppointment ? 'has-appointment' : ''}`}>
-            <span className="day-number">{day.number}</span>
-            {day.appointments && (
-              <div className="appointment-times">
-                {day.appointments.map((time, i) => (
-                  <span key={i} className="appointment-time">{time}</span>
-                ))}
-              </div>
-            )}
+        {calendarData.map(({ day, date, appointments, selected }, idx) => (
+          <div key={idx} className="calendar-column">
+            <div className="day-label">{day}</div>
+            <div className="date-label">{date}</div>
+            <div className="time-slot-group">
+            {timeSlots.map((time) => (
+  <div
+    key={time}
+    className={`time-slot ${appointments.includes(time) ? 'active' : ''} ${
+      selected === time ? 'selected' : ''
+    }`}
+  >
+    {time}
+  </div>
+))}
+
+            </div>
           </div>
         ))}
       </div>
-      
-      <div className="appointment-cards">
-        <div className="appointment-card">
-          <h3>Dentist</h3>
-          <p>Dr. Sarah Johnson</p>
-          <p>Oct 15, 2021 at 09:00 AM</p>
-        </div>
-        <div className="appointment-card">
-          <h3>Physiotherapy Appointment</h3>
-          <p>Dr. Michael Brown</p>
-          <p>Oct 18, 2021 at 02:30 PM</p>
-        </div>
-      </div>
     </div>
   );
-}
+};
 
 export default CalendarView;

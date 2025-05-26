@@ -1,41 +1,29 @@
-export const calendarData = {
-  month: 'October',
-  year: '2021',
-  days: [
-    { number: '', hasAppointment: false },
-    { number: '', hasAppointment: false },
-    { number: '', hasAppointment: false },
-    { number: '', hasAppointment: false },
-    { number: '1', hasAppointment: false },
-    { number: '2', hasAppointment: false },
-    { number: '3', hasAppointment: false },
-    { number: '4', hasAppointment: false },
-    { number: '5', hasAppointment: false },
-    { number: '6', hasAppointment: false },
-    { number: '7', hasAppointment: false },
-    { number: '8', hasAppointment: false },
-    { number: '9', hasAppointment: false },
-    { number: '10', hasAppointment: false },
-    { number: '11', hasAppointment: false },
-    { number: '12', hasAppointment: true, appointments: ['09:00', '13:00'] },
-    { number: '13', hasAppointment: false },
-    { number: '14', hasAppointment: false },
-    { number: '15', hasAppointment: true, appointments: ['09:00'] },
-    { number: '16', hasAppointment: false },
-    { number: '17', hasAppointment: false },
-    { number: '18', hasAppointment: true, appointments: ['14:30'] },
-    { number: '19', hasAppointment: false },
-    { number: '20', hasAppointment: false },
-    { number: '21', hasAppointment: false },
-    { number: '22', hasAppointment: false },
-    { number: '23', hasAppointment: false },
-    { number: '24', hasAppointment: false },
-    { number: '25', hasAppointment: false },
-    { number: '26', hasAppointment: false },
-    { number: '27', hasAppointment: false },
-    { number: '28', hasAppointment: false },
-    { number: '29', hasAppointment: false },
-    { number: '30', hasAppointment: false },
-    { number: '31', hasAppointment: false }
-  ]
-};
+// src/data/calendar.js
+
+export const upcomingAppointments = [
+  {
+    day: 'Monday',
+    title: 'Health checkup complete',
+    time: '11:00 AM - 12:00 PM',
+  },
+  {
+    day: 'Thursday',
+    title: 'Health checkup complete',
+    time: '11:00 AM - 12:00 PM',
+  },
+  {
+    day: 'Thursday',
+    title: 'Ophthalmologist',
+    time: '02:30 PM - 03:15 PM',
+  },
+  {
+    day: 'Saturday',
+    title: 'Cardiologist',
+    time: '10:00 AM - 11:00 AM',
+  },
+  {
+    day: 'Saturday',
+    title: 'Neurologist',
+    time: '01:00 PM - 02:00 PM',
+  },
+];

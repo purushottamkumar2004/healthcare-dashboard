@@ -1,76 +1,90 @@
 .anatomy-section {
-    flex: 2;
-    background-color: var(--sidebar-color);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-  }
-  
-  .section-title {
-    color: var(--text-color);
-    margin-bottom: 1.5rem;
-    font-size: 1.2rem;
-  }
-  
-  .anatomy-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .human-body {
-    position: relative;
-    width: 100%;
-    height: 300px;
-  }
-  
-  .anatomy-placeholder {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: #f0f4f8;
-    border-radius: var(--border-radius);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .body-outline {
-    width: 150px;
-    height: 250px;
-    background-color: #e0e8f0;
-    border-radius: 75px 75px 30px 30px;
-  }
-  
-  .health-indicator {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .indicator-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-bottom: 0.5rem;
-  }
-  
-  .indicator-label {
-    font-size: 0.8rem;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  
-  .health-indicator.healthy .indicator-dot {
-    background-color: var(--success-color);
-  }
-  
-  .health-indicator.warning .indicator-dot {
-    background-color: var(--warning-color);
-  }
-  
-  .health-indicator.danger .indicator-dot {
-    background-color: var(--danger-color);
-  }
+  flex: 2;
+  background-color: var(--sidebar-color);
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-title {
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.anatomy-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: transparent;
+}
+
+.human-body {
+  position: relative;
+  width: 100%;
+  height: 240px; /* ↓ reduced from 280px */
+  background-color: transparent;
+}
+
+.anatomy-placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.anatomy-image {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  max-width: 100%;
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+/* Health indicator */
+.health-indicator {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  transform: translateX(-50%);
+}
+
+.indicator-dot {
+  width: 8px;
+  height: 8px;
+  margin-bottom: 0.2rem;
+  border-radius: 50%;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+.indicator-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 1px 4px;
+  border-radius: 3px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+.health-indicator.healthy .indicator-dot {
+  background-color: var(--success-color);
+}
+.health-indicator.warning .indicator-dot {
+  background-color: var(--warning-color);
+}
+.health-indicator.danger .indicator-dot {
+  background-color: var(--danger-color);
+}
