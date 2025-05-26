@@ -18,7 +18,7 @@ function Header() {
         </div>
         <div className="user-profile">
           <div className="avatar">JD</div>
-          <span className="username">John Doe</span>
+          <span className="username">Purushottam kumar</span>
         </div>
         <button className="add-button">
           <FiPlus />

@@ -9,10 +9,15 @@ function HealthStatusCards() {
       <div className="cards-container">
         {healthData.map((item, index) => (
           <div key={index} className={`health-card ${item.status}`}>
-            <div className="card-icon">{item.icon}</div>
+            <div className="card-icon">
+              {item.icon}
+            </div>
             <div className="card-content">
-              <h3>{item.label}</h3>
-              <p>{item.date}</p>
+              <div className="card-title">{item.label}</div>
+              <div className="card-date">{item.date}</div>
+              <div className="progress-bar">
+                <div className="progress-fill"></div>
+              </div>
             </div>
           </div>
         ))}

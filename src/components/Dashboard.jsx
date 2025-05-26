@@ -20,9 +20,8 @@ function Dashboard() {
           </div>
         </div>
         <div className="dashboard-row">
-        <ActivityFeed />
+          <ActivityFeed />
           <UpcomingSchedule />
-          
         </div>
       </div>
     </main>

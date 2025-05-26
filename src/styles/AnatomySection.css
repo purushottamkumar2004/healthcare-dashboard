@@ -1,8 +1,8 @@
 .anatomy-section {
   flex: 2;
+  padding: 0.75rem;
   background-color: var(--sidebar-color);
   border-radius: var(--border-radius);
-  padding: 0.75rem;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
@@ -10,81 +10,169 @@
 }
 
 .section-title {
+  font-size: 0.95rem;
   color: var(--text-color);
   margin-bottom: 0.75rem;
-  font-size: 0.95rem;
 }
 
 .anatomy-container {
+  position: relative;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  background-color: transparent;
+  overflow: hidden;
 }
 
 .human-body {
   position: relative;
   width: 100%;
-  height: 240px; /* ↓ reduced from 280px */
-  background-color: transparent;
+  height: 320px;
+  cursor: zoom-in;
 }
 
 .anatomy-placeholder {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: transparent;
   border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  box-shadow: none;
 }
 
 .anatomy-image {
   height: 100%;
   width: auto;
-  object-fit: contain;
   max-width: 100%;
   border-radius: 4px;
-  box-shadow: none;
+  position: relative;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));
+  transition: all 0.4s ease;
+  transform-origin: center center;
+  object-fit: contain;
 }
 
-/* Health indicator */
+.human-body:hover .anatomy-image {
+  transform: scale(1.15);
+  filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.2));
+}
+
+.anatomy-placeholder::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  border-radius: 50%;
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+
+.human-body:hover .anatomy-placeholder::after {
+  width: 80%;
+  opacity: 0.7;
+}
+
 .health-indicator {
   position: absolute;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   z-index: 2;
-  transform: translateX(-50%);
+  transition: all 0.4s ease;
+}
+
+.human-body:hover .health-indicator {
+  transform: scale(0.9);
+  opacity: 0.7;
 }
 
 .indicator-dot {
   width: 8px;
   height: 8px;
-  margin-bottom: 0.2rem;
   border-radius: 50%;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+  background-color: white;
+  border: 2px solid currentColor;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .indicator-label {
-  font-size: 0.6rem;
+  position: absolute;
+  font-size: 0.75rem;
   font-weight: 500;
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 1px 4px;
-  border-radius: 3px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
+  color: white;
+  white-space: nowrap;
+  padding: 4px 12px;
+  border-radius: 20px;
+  transform: translateY(-50%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.health-indicator[data-position="left"] .indicator-label {
+  right: calc(100% + 20px);
+}
+
+.health-indicator[data-position="right"] .indicator-label {
+  left: calc(100% + 20px);
 }
 
 .health-indicator.healthy .indicator-dot {
+  border-color: var(--success-color);
+}
+
+.health-indicator.healthy .indicator-label {
   background-color: var(--success-color);
 }
+
 .health-indicator.warning .indicator-dot {
+  border-color: var(--warning-color);
+}
+
+.health-indicator.warning .indicator-label {
   background-color: var(--warning-color);
 }
+
 .health-indicator.danger .indicator-dot {
+  border-color: var(--danger-color);
+}
+
+.health-indicator.danger .indicator-label {
   background-color: var(--danger-color);
+}
+
+.qr-scanner {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.qr-scanner:hover {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.qr-scanner svg {
+  width: 14px;
+  height: 14px;
+  color: #666;
 }
